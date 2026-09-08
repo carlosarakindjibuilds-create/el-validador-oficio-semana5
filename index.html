@@ -16,7 +16,7 @@
         .mt-4 { margin-top: 16px; }
         .mb-2 { margin-bottom: 8px; }
         .mb-4 { margin-bottom: 16px; }
-        .badge { background-color: #d1fae5; color: #065f46; font-size: 12px; font-weight: bold; padding: 4px 12px; border-radius: 9999px; text-transform: uppercase; tracking-spacing: 1px; display: inline-block; }
+        .badge { background-color: #d1fae5; color: #065f46; font-size: 12px; font-weight: bold; padding: 4px 12px; border-radius: 9999px; text-transform: uppercase; display: inline-block; }
         h1 { font-size: 24px; font-weight: bold; color: #111827; margin: 8px 0 0 0; }
         .text-sm { font-size: 14px; color: #6b7280; }
         .text-base { font-size: 16px; font-weight: bold; color: #374151; }
@@ -139,7 +139,6 @@
     </div>
 
     <script>
-        // Lógica de JavaScript puro nativo encapsulado para asegurar ejecución libre de bloqueos
         let respuestas = { q1: '', q2: '', q3: '' };
 
         function irAPaso2() {
@@ -170,16 +169,16 @@
             const nombre = document.getElementById('nombreInput').value;
             
             let nivelRiesgo = "BAJO";
-            let estilosEstilo = "background-color: #d1fae5; color: #065f46; border: 1px solid #a7f3d0;";
+            let colorFondoText = "background-color: #d1fae5; color: #065f46; border: 1px solid #a7f3d0;";
             let recomendaciones = [
-"Mantener el uso de calzado cómodo con suelas amortiguadoras.",
+                "Mantener el uso de calzado cómodo con suelas amortiguadoras.",
 "Realizar 5 minutos de estiramientos de pantorrillas al cerrar el puesto.",
 "Mantener una hidratación constante durante las horas de calor."
 ];
 
 if (respuestas.q1 === 'C' || respuestas.q2 === 'C') {
     nivelRiesgo = "CRÍTICO / ALTO";
-    estilosEstilo = "background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;";
+    colorFondoText = "background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;";
     recomendaciones = [
         "⚠️ OBLIGATORIO: Tomar descansos sentada de 5 minutos cada 2 horas mañana.",
         "Elevar las piernas sobre dos almohadas durante 15 minutos hoy mismo al llegar a casa.",
@@ -187,7 +186,7 @@ if (respuestas.q1 === 'C' || respuestas.q2 === 'C') {
     ];
 } else if (respuestas.q1 === 'B' || respuestas.q2 === 'B' || respuestas.q3 === 'B') {
     nivelRiesgo = "MODERADO / PREVENTIVO";
-    estilosEstilo = "background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a;";
+    colorFondoText = "background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a;";
     recomendaciones = [
         "Alternar el peso del cuerpo entre la pierna izquierda y derecha cada 15 minutos.",
         "Colocar un banco pequeño en el puesto para apoyar un pie a la vez y liberar presión lumbar.",
@@ -221,7 +220,7 @@ document.getElementById('valTermica').innerText = jsonOutput.metricas_analizadas
 
 const lblRiesgo = document.getElementById('lblRiesgo');
 lblRiesgo.innerText = "Nivel de Riesgo: " + nivelRiesgo;
-lblRiesgo.style.cssText = estilosEstilo;
+lblRiesgo.style.cssText = colorFondoText;
 
 const lista = document.getElementById('listaRecomendaciones');
 lista.innerHTML = "";
@@ -231,10 +230,13 @@ for(let j=0; j<recomendaciones.length; j++) {
     lista.appendChild(li);
 }
 
-document.getElementById('paso2').classList.add('hidden');
-document.getElementById('paso3').classList.remove('hidden');
+document.getElementById('paso2').classList.remove('hidden');
+document.getElementById('paso1').classList.add('hidden');
+// Desplazar vista directo abajo
+window.scrollTo(0, document.body.scrollHeight);
 }
 
+// Modificación directa para eludir bloqueos de ocultamiento nativo
 function reiniciar() {
     respuestas = { q1: '', q2: '', q3: '' };
     const btns = document.querySelectorAll('.btn-opcion');
@@ -242,5 +244,6 @@ function reiniciar() {
         btns[k].classList.remove('btn-seleccionado');
     }
     document.getElementById('paso3').classList.add('hidden');
+    document.getElementById('paso2').classList.add('hidden');
     document.getElementById('paso1').classList.remove('hidden');
 }
