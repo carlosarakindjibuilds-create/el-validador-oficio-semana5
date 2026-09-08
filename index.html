@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Escudo de Salud de Doña Mari - Semana 5</title>
+    <!-- Versión CDN Estable para que Vercel renderice de inmediato -->
     <script src="https://jsdelivr.net"></script>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
@@ -41,9 +43,9 @@
             <div class="space-y-2">
                 <p class="text-base font-bold text-gray-800">1. ¿Cuántas horas pasó de pie hoy en su puesto?</p>
                 <div class="grid grid-cols-3 gap-2">
-                    <button onclick="seleccionar('q1', 'A', this)" class="q1-btn p-3 border border-gray-300 rounded-xl text-sm font-medium hover:border-emerald-600 cursor-pointer">Menos de 6h</button>
-                    <button onclick="seleccionar('q1', 'B', this)" class="q1-btn p-3 border border-gray-300 rounded-xl text-sm font-medium hover:border-emerald-600 cursor-pointer">De 6 a 10h</button>
-                    <button onclick="seleccionar('q1', 'C', this)" class="q1-btn p-3 border border-gray-300 rounded-xl text-sm font-medium hover:border-emerald-600 cursor-pointer">Más de 10h</button>
+                    <button type="button" onclick="seleccionar('q1', 'A', this)" class="q1-btn p-3 border border-gray-300 rounded-xl text-sm font-medium bg-white text-gray-800 hover:border-emerald-600 cursor-pointer">Menos de 6h</button>
+                    <button type="button" onclick="seleccionar('q1', 'B', this)" class="q1-btn p-3 border border-gray-300 rounded-xl text-sm font-medium bg-white text-gray-800 hover:border-emerald-600 cursor-pointer">De 6 a 10h</button>
+                    <button type="button" onclick="seleccionar('q1', 'C', this)" class="q1-btn p-3 border border-gray-300 rounded-xl text-sm font-medium bg-white text-gray-800 hover:border-emerald-600 cursor-pointer">Más de 10h</button>
                 </div>
             </div>
 
@@ -51,9 +53,9 @@
             <div class="space-y-2">
                 <p class="text-base font-bold text-gray-800">2. ¿Qué nivel de dolor o pesadez siente en sus piernas?</p>
                 <div class="grid grid-cols-3 gap-2">
-                    <button onclick="seleccionar('q2', 'A', this)" class="q2-btn p-3 border border-gray-300 rounded-xl text-sm font-medium hover:border-emerald-600 cursor-pointer">Leve / Ninguno</button>
-                    <button onclick="seleccionar('q2', 'B', this)" class="q2-btn p-3 border border-gray-300 rounded-xl text-sm font-medium hover:border-emerald-600 cursor-pointer">Moderado</button>
-                    <button onclick="seleccionar('q2', 'C', this)" class="q2-btn p-3 border border-gray-300 rounded-xl text-sm font-medium hover:border-emerald-600 cursor-pointer">Intenso</button>
+                    <button type="button" onclick="seleccionar('q2', 'A', this)" class="q2-btn p-3 border border-gray-300 rounded-xl text-sm font-medium bg-white text-gray-800 hover:border-emerald-600 cursor-pointer">Leve / Ninguno</button>
+                    <button type="button" onclick="seleccionar('q2', 'B', this)" class="q2-btn p-3 border border-gray-300 rounded-xl text-sm font-medium bg-white text-gray-800 hover:border-emerald-600 cursor-pointer">Moderado</button>
+                    <button type="button" onclick="seleccionar('q2', 'C', this)" class="q2-btn p-3 border border-gray-300 rounded-xl text-sm font-medium bg-white text-gray-800 hover:border-emerald-600 cursor-pointer">Intenso</button>
                 </div>
             </div>
 
@@ -61,12 +63,12 @@
             <div class="space-y-2">
                 <p class="text-base font-bold text-gray-800">3. ¿Estuvo expuesta prolongadamente a humo o calor intenso?</p>
                 <div class="grid grid-cols-2 gap-2">
-                    <button onclick="seleccionar('q3', 'A', this)" class="q3-btn p-3 border border-gray-300 rounded-xl text-sm font-medium hover:border-emerald-600 cursor-pointer">No / Muy poco</button>
-                    <button onclick="seleccionar('q3', 'B', this)" class="q3-btn p-3 border border-gray-300 rounded-xl text-sm font-medium hover:border-emerald-600 cursor-pointer">Sí, gran parte del día</button>
+                    <button type="button" onclick="seleccionar('q3', 'A', this)" class="q3-btn p-3 border border-gray-300 rounded-xl text-sm font-medium bg-white text-gray-800 hover:border-emerald-600 cursor-pointer">No / Muy poco</button>
+                    <button type="button" onclick="seleccionar('q3', 'B', this)" class="q3-btn p-3 border border-gray-300 rounded-xl text-sm font-medium bg-white text-gray-800 hover:border-emerald-600 cursor-pointer">Sí, gran parte del día</button>
                 </div>
             </div>
 
-            <button onclick="evaluarRespuestas()" class="h-14 w-full rounded-xl bg-emerald-600 text-white font-bold text-lg hover:bg-emerald-700 transition-all mt-4 cursor-pointer">
+            <button type="button" onclick="evaluarRespuestas()" class="h-14 w-full rounded-xl bg-emerald-600 text-white font-bold text-lg hover:bg-emerald-700 transition-all mt-4 cursor-pointer">
                 Procesar Reporte de Salud
             </button>
         </div>
@@ -81,7 +83,7 @@
             </div>
 
             <!-- Tarjeta Visual de Alerta Preventiva -->
-            <div id="tarjetaRiesgo" class="rounded-2xl p-5 border">
+            <div id="tarjetaRiesgo" class="rounded-2xl p-5 border bg-white shadow-sm border-gray-200">
                 <h2 class="text-xl font-bold text-gray-900">Constancia de Monitoreo Ocupacional</h2>
                 <p class="text-sm text-gray-600 mt-1">Avalado para: <strong id="lblNombre" class="text-gray-900"></strong></p>
                 <p class="text-sm text-gray-600">Oficio: <span class="font-medium text-gray-900">Comercio de Alimentos</span></p>
@@ -90,8 +92,8 @@
 
                 <div class="space-y-2">
                     <p class="text-sm font-bold text-gray-800">Indicadores de Riesgo:</p>
-                    <p class="text-xs text-gray-700">Ergonomía Circular: <strong id="valErgo"></strong></p>
-                    <p class="text-xs text-gray-700">Exposición Térmica: <strong id="valTermica"></strong></p>
+                    <p class="text-xs text-gray-700">Ergonomía Circular: <strong id="valErgo" class="text-gray-900"></strong></p>
+                    <p class="text-xs text-gray-700">Exposición Térmica: <strong id="valTermica" class="text-gray-900"></strong></p>
                 </div>
 
                 <div class="h-px bg-gray-200 my-4"></div>
@@ -104,7 +106,7 @@
                 </div>
             </div>
 
-            <button onclick="reiniciar()" class="h-12 w-full rounded-xl bg-gray-200 text-gray-700 font-bold text-sm hover:bg-gray-300 transition-all cursor-pointer">
+            <button type="button" onclick="reiniciar()" class="h-12 w-full rounded-xl bg-gray-200 text-gray-700 font-bold text-sm hover:bg-gray-300 transition-all cursor-pointer">
                 Registrar nueva jornada
             </button>
         </div>
@@ -126,11 +128,9 @@
         function seleccionar(pregunta, opcion, elem) {
             respuestas[pregunta] = opcion;
             document.querySelectorAll('.' + pregunta + '-btn').forEach(b => {
-                b.classList.remove('bg-emerald-600', 'text-white', 'border-emerald-600');
-                b.classList.add('bg-white', 'text-gray-800', 'border-gray-300');
+                b.className = b.className.replace('bg-emerald-600 text-white border-emerald-600', 'bg-white text-gray-800 border-gray-300');
             });
-            elem.classList.remove('bg-white', 'text-gray-800', 'border-gray-300');
-            elem.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+            elem.className = elem.className.replace('bg-white text-gray-800 border-gray-300', 'bg-emerald-600 text-white border-emerald-600');
         }
 
         function evaluarRespuestas() {
@@ -161,11 +161,4 @@
                 nivelRiesgo = "MODERADO / PREVENTIVO";
                 colorClase = "bg-yellow-100 text-yellow-800 border-yellow-300";
                 recomendaciones = [
-                    "Alternar el peso del cuerpo entre la pierna izquierda y derecha cada 15 minutos.",
-                    "Colocar un banco pequeño en el puesto para apoyar un pie a la vez y liberar presión lumbar.",
-                    "Alejarse de la fuente directa de calor/humo durante los momentos de baja afluencia."
-                ];
-            }
-
-            const jsonOutput = {
-"metadatos_evaluacion": {"evaluado": nombre,"perfil_riesgo": "Ergonomía Ocupacional Informal","fecha_ISO": new Date().toISOString(),"version_algoritmo": "v5.2.0-structured"},"metricas_analizadas": {"horas_bipedestacion_score": respuestas.q1 === 'C' ? 95 : (respuestas.q1 === 'B' ? 65 : 35),"retencion_liquidos_index": respuestas.q2 === 'C' ? 90 : (respuestas.q2 === 'B' ? 55 : 20),"estres_termico_exposicion": respuestas.q3 === 'B' ? "Alta" : "Baja"},"diagnostico_estructurado": {"estatus_semasforo": nivelRiesgo,"consejos_autocuidado_inmediato": recomendaciones,"alerta_soporte_activa": respuestas.q2 === 'C' ? true : false}};document.getElementById('jsonBlock').innerText = JSON.stringify(jsonOutput, null, 2);document.getElementById('lblNombre').innerText = nombre;document.getElementById('valErgo').innerText = jsonOutput.metricas_analizadas.horas_bipedestacion_score + "/100 ptos";document.getElementById('valTermica').innerText = jsonOutput.metricas_analizadas.estres_termico_exposicion;const lblRiesgo = document.getElementById('lblRiesgo');lblRiesgo.innerText = "Nivel de Riesgo: " + nivelRiesgo;lblRiesgo.className = "text-sm font-bold text-center p-3 rounded-xl uppercase tracking-wide " + colorClase;const lista = document.getElementById('listaRecomendaciones');lista.innerHTML = "";recomendaciones.forEach(rec => {const li = document.createElement('li');li.innerText = rec;lista.appendChild(li);});document.getElementById('paso2').classList.add('hidden');document.getElementById('paso3').classList.remove('hidden');}function reiniciar() {respuestas = { q1: '', q2: '', q3: '' };document.querySelectorAll('.grid button').forEach(b => {b.className = b.className.replace('bg-emerald-600 text-white border-emerald-600', 'bg-white text-gray-800 border-gray-300');});document.getElementById('paso3').classList.add('hidden');document.getElementById('paso2').classList.remove('hidden');}
+"Alternar el peso del cuerpo entre la pierna izquierda y derecha cada 15 minutos.","Colocar un banco pequeño en el puesto para apoyar un pie a la vez y liberar presión lumbar.","Alejarse de la fuente directa de calor/humo durante los momentos de baja afluencia."];}const jsonOutput = {"metadatos_evaluacion": {"evaluado": nombre,"perfil_riesgo": "Ergonomía Ocupacional Informal","fecha_ISO": new Date().toISOString(),"version_algoritmo": "v5.2.0-structured"},"metricas_analizadas": {"horas_bipedestacion_score": respuestas.q1 === 'C' ? 95 : (respuestas.q1 === 'B' ? 65 : 35),"retencion_liquidos_index": respuestas.q2 === 'C' ? 90 : (respuestas.q2 === 'B' ? 55 : 20),"estres_termico_exposicion": respuestas.q3 === 'B' ? "Alta" : "Baja"},"diagnostico_estructurado": {"estatus_semasforo": nivelRiesgo,"consejos_autocuidado_inmediato": recomendaciones,"alerta_soporte_activa": respuestas.q2 === 'C' ? true : false}};document.getElementById('jsonBlock').innerText = JSON.stringify(jsonOutput, null, 2);document.getElementById('lblNombre').innerText = nombre;document.getElementById('valErgo').innerText = jsonOutput.metricas_analizadas.horas_bipedestacion_score + "/100 ptos";document.getElementById('valTermica').innerText = jsonOutput.metricas_analizadas.estres_termico_exposicion;const lblRiesgo = document.getElementById('lblRiesgo');lblRiesgo.innerText = "Nivel de Riesgo: " + nivelRiesgo;lblRiesgo.className = "text-sm font-bold text-center p-3 rounded-xl uppercase tracking-wide " + colorClase;const lista = document.getElementById('listaRecomendaciones');lista.innerHTML = "";recomendaciones.forEach(rec => {const li = document.createElement('li');li.innerText = rec;lista.appendChild(li);});document.getElementById('paso2').classList.add('hidden');document.getElementById('paso3').classList.remove('hidden');}function reiniciar() {respuestas = { q1: '', q2: '', q3: '' };document.querySelectorAll('.q1-btn, .q2-btn, .q3-btn').forEach(b => {b.className = "p-3 border border-gray-300 rounded-xl text-sm font-medium bg-white text-gray-800 hover:border-emerald-600 cursor-pointer";});document.getElementById('paso3').classList.add('hidden');document.getElementById('paso1').classList.remove('hidden');}
